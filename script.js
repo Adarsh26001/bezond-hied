@@ -1,37 +1,49 @@
-document.querySelector('.box-services').addEventListener('click', () => {
-    window.location.href = 'https://codepen.io/nightfury10/full/MWMbGov';
-});
-
-document.querySelector('.box-products').addEventListener('click', () => {
-    window.location.href = 'https://bezondhiedpvtltd.wordpress.com/';
-});
-
-document.querySelector('.box-innovation').addEventListener('click', () => {
-    window.location.href = 'https://bezondhiedpvtltd.wordpress.com/';
-});
-
-document.querySelector('.box-hiring').addEventListener('click', () => {
-    window.location.href = 'https://codepen.io/nightfury10/full/GRbNdmV';
-});
-
-document.querySelector('.box-getintouch').addEventListener('click', () => {
-    window.location.href = 'https://codepen.io/nightfury10/full/dyBOeWw';
-});
-
-let currentIndex = 0;
-const slides = document.querySelectorAll('.slideshow img');
-const totalSlides = slides.length;
-
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.style.display = i === index ? 'block' : 'none';
+document.addEventListener("DOMContentLoaded", function () {
+    // Handle navigation links
+    document.querySelectorAll('nav a').forEach(function (navLink) {
+        navLink.addEventListener('click', function (event) {
+            const targetId = event.target.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                event.preventDefault();
+                window.scrollTo({
+                    top: targetElement.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
-}
 
-function nextSlide() {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    showSlide(currentIndex);
-}
+    // Handle section box links
+    document.querySelector('.box-services').addEventListener('click', function () {
+        window.location.href = "https://adarsh26001.github.io/services/";
+    });
 
-setInterval(nextSlide, 3000);
-showSlide(currentIndex);
+    document.querySelector('.box-products').addEventListener('click', function () {
+        window.location.href = "https://bezondhiedpvtltd.wordpress.com/";
+    });
+
+    document.querySelector('.box-innovation').addEventListener('click', function () {
+        window.location.href = "https://bezondhiedpvtltd.wordpress.com/";
+    });
+
+    document.querySelector('.box-hiring').addEventListener('click', function () {
+        window.location.href = "https://adarsh26001.github.io/hiring/";
+    });
+
+    document.querySelector('.box-getintouch').addEventListener('click', function () {
+        window.location.href = "https://adarsh26001.github.io/getintouch/";
+    });
+
+    // Slideshow functionality
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".slideshow img");
+    const showSlides = () => {
+        slides.forEach((slide, index) => {
+            slide.style.display = index === slideIndex ? "block" : "none";
+        });
+        slideIndex = (slideIndex + 1) % slides.length;
+    };
+    showSlides();
+    setInterval(showSlides, 3000); // Change image every 3 seconds
+});
